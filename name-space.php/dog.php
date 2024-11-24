@@ -3,7 +3,7 @@ namespace userDog;
 
 class Dog{
     function pat(){
-    echo "My Dog name is Rambo.";
+    echo "My Dog speak Woof! Woof!...";
     }
 }
 
