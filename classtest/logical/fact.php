@@ -20,7 +20,8 @@
             padding: 2px 65px;
         }
         div{
-            margin-left: 600px;
+            /* margin-left: 600px; */
+            text-align: center;
             margin-top: 50px;
             font-size: 20px;
             font-weight: 600;
