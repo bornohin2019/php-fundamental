@@ -1,9 +1,16 @@
 <?php
+session_start();
+if (!isset($_SESSION['userName'])) {
+    header("location:login.php");
+}
+
+
 // include class file
-    require_once'class.php';
+
+require_once 'class.php';
 
 // data input 
-if(isset($_POST['btnSubmit'])){
+if (isset($_POST['btnSubmit'])) {
     $name = $_POST['name'];
     $age = $_POST['age'];
     $gender = $_POST['gender'];
@@ -12,17 +19,22 @@ if(isset($_POST['btnSubmit'])){
     $address = $_POST['address'];
     $course = $_POST['course'];
 
-// create a Object 
-
-    $studentObject = new Student($name,$age,$gender,$email,$phone,$address,$course);
-    $studentObject->save();
-
+    if (!preg_match("/^[a-zA-Z0-9]{4, }+@+[a-zA-Z]{2,3}[.]+[a-zA-Z]{2,3} $/", $email)) {
+        echo "Email is not Valid";
+    } else if (!preg_match("/^[0-9]{11,14}$/", $phone)) {
+        echo "Phone is not valid";
+    } else {
+        // create a Object 
+        $studentObject = new Student($name, $age, $gender, $email, $phone, $address, $course);
+        $studentObject->save();
+    }
 }
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,30 +42,35 @@ if(isset($_POST['btnSubmit'])){
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
             padding: 0;
-            display: flex;
+            /* display: flex; */
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             background-color: #f5f5f5;
         }
+
         .form-container {
+            margin: 0 auto;
+            margin-top: 50px;
             background: white;
             padding: 20px 30px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 400px;
         }
+
         .form-container h2 {
             text-align: center;
             margin-bottom: 20px;
         }
+
         .form-container label {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
         }
+
         .form-container input,
         .form-container select,
         .form-container textarea {
@@ -63,6 +80,7 @@ if(isset($_POST['btnSubmit'])){
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+
         .form-container button {
             width: 100%;
             padding: 10px;
@@ -72,12 +90,17 @@ if(isset($_POST['btnSubmit'])){
             border-radius: 5px;
             font-size: 16px;
         }
+
         .form-container button:hover {
             background-color: #45a049;
         }
     </style>
 </head>
+
 <body>
+    <?php
+    require_once 'nav.php';
+    ?>
     <div class="form-container">
         <h2>Student Information Form</h2>
         <form action="#" method="post">
@@ -111,4 +134,5 @@ if(isset($_POST['btnSubmit'])){
         </form>
     </div>
 </body>
+
 </html>

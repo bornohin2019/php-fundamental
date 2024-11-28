@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if(isset($_POST['btnSubmit'])){
     $userName = $_POST['username'];
     $userPassword = $_POST['password'];
@@ -15,10 +16,7 @@ if(isset($_POST['btnSubmit'])){
         else{
             $msg="Username or Password is incorrect!";
         }
-
     }
-
-
 }
 
 ?>
