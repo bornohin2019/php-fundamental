@@ -1,4 +1,3 @@
-
 <?php
 
     session_start();
@@ -6,6 +5,22 @@
         header("location:login.php");
     }
 
+    require_once 'class.php';
+
+    // data passing
+
+    if(isset($_POST['btnSubmit'])){
+        $name = $_POST['fullname'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $address = $_POST['address'];
+        $course = $_POST['course'];
+
+        $studentObject =new Student($name,$email,$phone,$address,$course);
+
+        $studentObject->save();
+
+    }
 
 ?>
 
@@ -33,19 +48,22 @@
                 <input type="email" id="email" name="email" required>
             </div>
             <div class="input-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+                <label for="username">Phone:</label>
+                <input type="number" id="phone" name="phone" required>
             </div>
             <div class="input-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <label for="password">address:</label>
+                <input type="text" id="address" name="address" required>
             </div>
             <div class="input-group">
-                <label for="confirm-password">Confirm Password:</label>
-                <input type="password" id="confirm-password" name="confirm-password" required>
+                <label for="confirm-password">Course:</label>
+                <input type="text" id="confirm-password" name="course" required>
             </div>
-            <button type="submit">Register</button>
+            <button type="submit" name="btnSubmit">Register</button>
         </form>
     </div>
+    <?php
+        Student::display();
+    ?>
 </body>
 </html>
