@@ -2,9 +2,15 @@
     // include connection file 
     require_once 'conn.php';
 
+    // delete query
+    if(isset($_GET['deleteId'])){
+        $delete = $_GET['deleteId'];
 
-
-
+        $sql = "DELETE FROM trainee_info WHERE id = $delete";
+        if(mysqli_query($conn,$sql) == TRUE){
+            header('location:display.php');
+        }
+    }
 
 ?>
 
@@ -44,7 +50,7 @@
                     <td>$name</td>
                     <td>$email</td>
                     <td>$phone</td>
-                    <td><button>Delete</button></td>
+                    <td><button class='action-btn'><a href='display.php?deleteId=$id'>Delete</a></button></td>
                 </tr>
             </tbody>";
                 }
