@@ -42,7 +42,9 @@
             }
             else{
                 $display = $conn-> query("select * from trainee_info");
+                $count = 1;
                 while(list($id,$name,$email,$phone) = $display->fetch_row()){
+                    $id = $count++;
                     echo " 
                         <tbody>
                 <tr>

@@ -42,10 +42,11 @@ if(isset($_GET['deleteId'])){
             if (!$connection) {
                 die('Connection Failed' . mysqli_connect_errno());
             } else {
+                
                 $display = $connection->query("SELECT * FROM employee_info");
-                while (list($id, $name, $email, $phone) =
-                    $display->fetch_row()
-                ) {
+                $count = 1;
+                while (list($id, $name, $email, $phone) = $display->fetch_row()) {
+                    $id = $count++;
                     echo "
                         <tbody>
                 <tr>
