@@ -50,7 +50,7 @@
                     <td>$name</td>
                     <td>$email</td>
                     <td>$phone</td>
-                    <td><button class='edit-btn'><a href='display.php?editId=$id'>Edit</a></button></td>
+                    <td><button class='edit-btn'><a href='edit.php?editId=$id'>Edit</a></button></td>
                     <td><button class='action-btn'><a href='display.php?deleteId=$id'>Delete</a></button></td>
                 </tr>
             </tbody>";

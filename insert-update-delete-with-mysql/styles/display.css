@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(to bottom, #000000, #1a1a1a);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.table-container {
+    width: 90%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+.table-title {
+    text-align: center;
+    padding: 20px;
+    font-size: 2rem;
+    color: #f4d03f;
+    background: linear-gradient(90deg, #f4d03f, #f7dc6f);
+    color: #000000;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+th {
+    background: linear-gradient(90deg, #f4d03f, #f7dc6f);
+    color: #000000;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+td {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+tr:nth-child(even) td {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+tr:hover td {
+    background: rgba(244, 208, 63, 0.2);
+    color: #f4d03f;
+    transition: 0.3s ease;
+}
+
+.footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+    color: #cccccc;
+}

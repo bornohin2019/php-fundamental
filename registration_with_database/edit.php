@@ -14,13 +14,13 @@ if($_GET['editId']){
     $phone = $data['phone'];
 }
 
-if(isset($_POST['edit'])){
+if(isset($_POST['update'])){
     $id = $_POST['id'];
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
 
-    $sql1 = "UPDATE trainee_info SET name = $name, email = $email, phone = $phone WHERE id = '$id";
+    $sql1 = "UPDATE trainee_info SET name = '$name', email = '$email', phone = '$phone' WHERE id = $id";
     
     if(mysqli_query($conn, $sql1) == TRUE){
         header ('location:display.php');
