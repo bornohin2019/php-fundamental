@@ -1,39 +1,3 @@
-<?php
-// connection database:
-session_start();
-require_once 'connection.php';
-
-// data insert 
-
-if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    if (!$conn) {
-        die('Connection Failed: ' . mysqli_connect_error());
-    } else {
-        $fetch = $conn->query("SELECT * FROM signup");
-
-        if ($fetch->num_rows > 0) {
-            while (list($id, $userName, $userEmail, $userPassword) = $fetch->fetch_row()) {
-                // echo "$userEmail, $userPassword";
-                if ($email == $userEmail && $password == $userPassword) {
-                    $_SESSION['mySession'] = $name;
-                    header('location:home.php');
-                }
-                else{
-                    $msg = "Email or Password are not match !";
-                }
-            }
-        } else {
-            echo "No records found.";
-        }
-    }
-}
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,14 +40,9 @@ if (isset($_POST['login'])) {
         </form>
         <div class="mt-4 text-center">
             <p class="text-sm text-gray-600">
-                Don’t have an account? <a href="signup.php" class="text-blue-500 hover:underline">Sign up</a>
+                <a href="signup.php" class="text-blue-500 hover:underline">Login</a>
             </p>
-            <p class="text-sm text-gray-600">
-                or
-            </p>
-            <p class="text-sm text-gray-600">
-              <a href="forget.php" class="text-blue-500 hover:underline">Forget your password !</a>
-            </p>
+
         </div>
     </div>
 </body>

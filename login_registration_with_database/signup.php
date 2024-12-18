@@ -5,34 +5,55 @@ require_once 'connection.php';
 
 // data insert 
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // insert query 
-    $insert = "INSERT INTO signup (name, email, password) VALUES ('$name','$email','$password')";
+    // fetch old data 
+    $userExists = false;
+    $fetch = $conn->query("SELECT * FROM signup");
+    if ($fetch->num_rows > 0) {
+        while (list($id, $userName, $userEmail, $userPassword) = $fetch-> fetch_row()) {
+            if ($email == $userEmail) {
+                $userExists = true;
+                break;
+            }
+        }
+    }
 
-    if(mysqli_query($conn, $insert) == TRUE){
-        $msg = "Sing Up Successfully !";
-        $_SESSION['mySession'] = $email;
-        header('location:home.php');
+    if ($userExists == true) {
+        $msgUser = "This user already Exists";
+    } else {
+        // insert query 
+        $insert = "INSERT INTO signup (name, email, password) VALUES ('$name','$email','$password')";
 
+        if (mysqli_query($conn, $insert) == TRUE) {
+            $msg = "Sing Up Successfully !";
+            $_SESSION['mySession'] = $email;
+            header('location:home.php');
+        }
     }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-lg">
         <div class="text-center">
+            <?php
+            echo isset($msgUser)?$msgUser:'';
+            
+            ?>
             <h2 class="text-2xl font-bold text-gray-700">Create an Account</h2>
             <p class="text-sm text-gray-500">Sign up to get started!</p>
         </div>
@@ -62,4 +83,5 @@ if(isset($_POST['submit'])){
         </div>
     </div>
 </body>
+
 </html>
