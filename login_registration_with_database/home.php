@@ -1,8 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['mySession'])){
-    header('location:login.php');
-}
+
+// if(!isset($_SESSION['mySession'])){
+//     header('location:login.php');
+// }
 
 
 ?>
