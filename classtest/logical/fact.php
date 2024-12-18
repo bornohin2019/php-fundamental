@@ -35,8 +35,6 @@
         <input type="number" name="number" id=""><br>
         <input class="btn" type="submit" value="Submit" name="submit">
     </form>
-
-
     <?php
     if ($_POST) {
         $num = $_POST['number'];
@@ -54,8 +52,6 @@
                 ";
         }
     }
-
     ?>
 </body>
-
 </html>
