@@ -18,7 +18,7 @@ if (isset($_POST['login'])) {
             while (list($id, $userName, $userEmail, $userPassword) = $fetch->fetch_row()) {
                 // echo "$userEmail, $userPassword";
                 if ($email == $userEmail && $password == $userPassword) {
-                    $_SESSION['mySession'] = $name;
+                    $_SESSION['mySession'] = $email;
                     header('location:home.php');
                 }
                 else{
